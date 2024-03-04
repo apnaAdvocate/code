@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1049032660381",
+    "project_id": "apna-advocate",
+    "storage_bucket": "apna-advocate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049032660381:android:f63a0349f29a8809130b74",
+        "android_client_info": {
+          "package_name": "com.advocate.apna"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDyamUrosXWUyb3qeHl35WN1fY9j4ZR4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
