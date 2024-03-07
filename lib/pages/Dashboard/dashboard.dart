@@ -6,6 +6,13 @@ import 'package:apna_advocate/pages/splash/splash.dart';
 import 'package:apna_advocate/user/user.dart';
 import 'package:apna_advocate/widgets/carousel/carousel.dart';
 import 'package:apna_advocate/widgets/navigator/navigation%20bar.dart';
+import 'package:apna_advocate/widgets/services/affidevit.dart';
+import 'package:apna_advocate/widgets/services/estamp.dart';
+import 'package:apna_advocate/widgets/services/land%20details.dart';
+import 'package:apna_advocate/widgets/services/mutation.dart';
+import 'package:apna_advocate/widgets/services/notary%20public%20services.dart';
+import 'package:apna_advocate/widgets/services/online%20rent%20payment.dart';
+import 'package:apna_advocate/widgets/services/rent agreement.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -61,8 +68,90 @@ class dashboard extends StatelessWidget {
               child: Carousel(),
             ),
           ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 300,left: 15),
+              child: Text("Our Services :",style: TextStyle(color: colorHelper.colors[1],fontWeight: FontWeight.bold),),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 340),
+              child: Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [colorHelper.theme_color_black,colorHelper.colors[5]]
+                  )
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height : 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Expanded(child: rent_agreement_card()),
+                            SizedBox(width: 10,),
+                            Expanded(child: affidevit_card()),
+                            SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                        height : 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Expanded(child: notary_public_services_card()),
+                            SizedBox(width: 10,),
+                            Expanded(child: e_stamp_card()),
+                            SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                        height : 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Expanded(child: online_rent_payment_card()),
+                            SizedBox(width: 10,),
+                            Expanded(child: land_details_card()),
+                            SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                        height : 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Expanded(child: mutation_card()),
+                            SizedBox(width: 10,),
 
-          navigation_bar(context),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          navigation_bar(context,true,false,false),
         ],
       ),
     );

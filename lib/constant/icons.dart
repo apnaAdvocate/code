@@ -12,6 +12,11 @@ class iconHelper{
     AkarIcons.phone,
     AkarIcons.cross,
     AkarIcons.bell,
-    Icons.arrow_forward_ios_rounded
+    Icons.arrow_forward_ios_rounded,
+    AkarIcons.clock,
+    MdiIcons.currencyRupee,
+    AkarIcons.home,
+    AkarIcons.person,
+    AkarIcons.radio_fill
   ];
 }

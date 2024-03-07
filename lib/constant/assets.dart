@@ -8,4 +8,7 @@ class assets{
   static const phone_verification ="assets/otp_assets.png";
   static const app_logo = "assets/app logo.png";
   static const avatar = "assets/avatar.png";
+  static const icon = "assets/icon.png";
+  static const icon2 = "assets/icon2.png";
+  static const icon3 = "assets/icon3.png";
 }

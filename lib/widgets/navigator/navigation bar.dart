@@ -1,43 +1,41 @@
+import 'package:apna_advocate/constant/icons.dart';
 import 'package:apna_advocate/pages/Dashboard/dashboard.dart';
 import 'package:apna_advocate/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/color.dart';
 
-Widget navigation_bar(context){
+Widget navigation_bar(context,home,profile,track){
   return Align(
     alignment: Alignment.bottomCenter,
-    child: Padding(
-      padding: const EdgeInsets.only(bottom: 40),
-      child: Container(
-        height: 50,
-        width: 344,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(80)),
-            color: colorHelper.secondry_theme_color
-        ),
-        child: Row(
-          children: [
-            SizedBox(width:18,),
-            TextButton(onPressed: (){
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => dashboard()));
-            },child :Text("Home",style: TextStyle(color: colorHelper.colors[0])),),
-            SizedBox(width: 18,),
-            Container(height: double.infinity,width: 1,color: colorHelper.colors[0],),
-            SizedBox(width: 18,),
-            TextButton(onPressed: (){
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => profile()));
+    child: Container(
+      height: 60,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          // color: colorHelper.secondry_theme_color
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(iconHelper.icons[10],color: home == true ?colorHelper.colors[1] : colorHelper.colors[0],),
+          SizedBox(width: 3,),
+          TextButton(onPressed: (){
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => dashboard()), (route) => false);
+          }, child:Text("Home",style: TextStyle(color: home == true ?colorHelper.colors[1] : colorHelper.colors[0],),),),
+          SizedBox(width: 18,),
+          Icon(iconHelper.icons[11],color: profile == true ?colorHelper.colors[1] : colorHelper.colors[0],),
+          SizedBox(width: 3,),
+          TextButton(onPressed: (){
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => account()), (route) => false);
+          }, child:Text("Profile",style: TextStyle(color: profile == true ?colorHelper.colors[1] : colorHelper.colors[0],),),),
+          SizedBox(width: 18,),
+          Icon(iconHelper.icons[12],color: track == true ?colorHelper.colors[1] : colorHelper.colors[0],),
+          SizedBox(width: 3,),
+          TextButton(onPressed: (){
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => dashboard()), (route) => false);
+          }, child:Text("Track Order",style: TextStyle(color: track == true ?colorHelper.colors[1] : colorHelper.colors[0],),),),
 
-            },child :Text("Profile",style: TextStyle(color: colorHelper.colors[0])),),
-            SizedBox(width: 18,),
-            Container(height: double.infinity,width: 1,color: colorHelper.colors[0],),
-            SizedBox(width: 18,),
-            TextButton(onPressed: (){
-
-            },child :Text("Track Order",style: TextStyle(color: colorHelper.colors[0])),),
-            SizedBox(width: 18,),
-          ],
-        ),
+        ],
       ),
     ),
   );
