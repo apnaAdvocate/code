@@ -23,7 +23,14 @@ class _text_feild_passwordState extends State<text_feild_password> {
           register_controller.password_feild = !register_controller.password_feild;
           register_controller.phone_feild = true;
         });
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => register()));
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => register(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
       },
       child: Container(
         height: register_controller.password_feild ?30 : 80,

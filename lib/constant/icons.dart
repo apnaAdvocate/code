@@ -17,6 +17,8 @@ class iconHelper{
     MdiIcons.currencyRupee,
     AkarIcons.home,
     AkarIcons.person,
-    AkarIcons.radio_fill
+    AkarIcons.radio_fill,
+    MdiIcons.imageEdit,
+    MdiIcons.fileUpload
   ];
 }

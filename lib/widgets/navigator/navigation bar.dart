@@ -1,6 +1,7 @@
 import 'package:apna_advocate/constant/icons.dart';
 import 'package:apna_advocate/pages/Dashboard/dashboard.dart';
 import 'package:apna_advocate/pages/profile/profile.dart';
+import 'package:apna_advocate/pages/track%20Order/track%20Order.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/color.dart';
@@ -12,7 +13,6 @@ Widget navigation_bar(context,home,profile,track){
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
-          // color: colorHelper.secondry_theme_color
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +32,7 @@ Widget navigation_bar(context,home,profile,track){
           Icon(iconHelper.icons[12],color: track == true ?colorHelper.colors[1] : colorHelper.colors[0],),
           SizedBox(width: 3,),
           TextButton(onPressed: (){
-            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => dashboard()), (route) => false);
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => track_order()), (route) => false);
           }, child:Text("Track Order",style: TextStyle(color: track == true ?colorHelper.colors[1] : colorHelper.colors[0],),),),
 
         ],

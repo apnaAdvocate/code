@@ -1,7 +1,9 @@
 import 'package:apna_advocate/constant/assets.dart';
 import 'package:apna_advocate/constant/color.dart';
 import 'package:apna_advocate/constant/icons.dart';
+import 'package:apna_advocate/controllers/form/form.dart';
 import 'package:apna_advocate/pages/notification/notification.dart';
+import 'package:apna_advocate/pages/service%20form/service%20form.dart';
 import 'package:apna_advocate/pages/splash/splash.dart';
 import 'package:apna_advocate/user/user.dart';
 import 'package:apna_advocate/widgets/carousel/carousel.dart';
@@ -97,37 +99,23 @@ class dashboard extends StatelessWidget {
                         child: Row(
                           children: [
                             SizedBox(width: 10,),
-                            Expanded(child: rent_agreement_card()),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Rent Agreement")));
+                                },
+                                child: rent_agreement_card())),
                             SizedBox(width: 10,),
-                            Expanded(child: affidevit_card()),
-                            SizedBox(width: 10,),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15,),
-                      Container(
-                        height : 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10,),
-                            Expanded(child: notary_public_services_card()),
-                            SizedBox(width: 10,),
-                            Expanded(child: e_stamp_card()),
-                            SizedBox(width: 10,),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15,),
-                      Container(
-                        height : 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10,),
-                            Expanded(child: online_rent_payment_card()),
-                            SizedBox(width: 10,),
-                            Expanded(child: land_details_card()),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Affidevit")));
+                                },
+                                child: affidevit_card())),
                             SizedBox(width: 10,),
                           ],
                         ),
@@ -139,7 +127,70 @@ class dashboard extends StatelessWidget {
                         child: Row(
                           children: [
                             SizedBox(width: 10,),
-                            Expanded(child: mutation_card()),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Notary Public Service Card")));
+                                },
+                                child: notary_public_services_card())),
+                            SizedBox(width: 10,),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "E-Stamp")));
+                                },
+                                child: e_stamp_card())),
+                            SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                        height : 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Online Rent Payment")));
+                                },
+                                child: online_rent_payment_card())),
+                            SizedBox(width: 10,),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Land Details")));
+                                },
+                                child: land_details_card())),
+                            SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15,),
+                      Container(
+                        height : 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Expanded(child: InkWell(
+                                onTap: (){
+                                  form_controller.name.text = user.name;
+                                  form_controller.phone.text = user.phone;
+                                  form_controller.email.text = user.email;
+                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Mutation")));
+                                },
+                                child: mutation_card())),
                             SizedBox(width: 10,),
 
                           ],
@@ -151,7 +202,14 @@ class dashboard extends StatelessWidget {
               ),
             ),
           ),
-          navigation_bar(context,true,false,false),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+                height: 70,
+                width: double.infinity,
+                color: colorHelper.colors[5],
+                child: navigation_bar(context,true,false,false)),
+          ),
         ],
       ),
     );

@@ -7,7 +7,8 @@ class colorHelper{
     Colors.grey,
     Colors.red,
     Colors.yellow,
-    Colors.deepPurple
+    Colors.deepPurple,
+    Colors.green
 
   ];
 

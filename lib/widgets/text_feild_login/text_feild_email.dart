@@ -35,7 +35,14 @@ class _text_feild_email_loginState extends State<text_feild_email_login> {
           login_controller.email_feild = !login_controller.email_feild;
 
         });
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => login()));
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => login(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
       },
       child: Container(
         height: login_controller.email_feild ?30 : 80,

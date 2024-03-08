@@ -34,7 +34,14 @@ class _text_feild_name_loginState extends State<text_feild_name_login> {
           login_controller.name_feild = !login_controller.name_feild;
           login_controller.email_feild = true;
         });
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => login()));
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => login(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
 
       },
       child: Container(

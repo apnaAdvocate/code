@@ -24,7 +24,14 @@ class _text_feild_nameState extends State<text_feild_name> {
           register_controller.password_feild = true;
           register_controller.phone_feild = true;
         });
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => register()));
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => register(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
 
       },
       child: Container(
