@@ -15,23 +15,30 @@ class text_feild_email extends StatefulWidget {
 
 class _text_feild_emailState extends State<text_feild_email> {
   @override
+  FocusNode inputNode = FocusNode();
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        setState(() {
-          register_controller.name_feild = true;
-          register_controller.email_feild = !register_controller.email_feild;
-          register_controller.password_feild = true;
-          register_controller.phone_feild = true;
-        });
-        Navigator.pushReplacement(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => register(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+      onTap: () {
+        if (register_controller.email_feild == false) {
+          FocusScope.of(context).requestFocus(inputNode);
+        } else {
+          setState(() {
+            register_controller.name_feild = true;
+            register_controller.email_feild = !register_controller.email_feild;
+            register_controller.password_feild = true;
+            register_controller.phone_feild = true;
+          });
+
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => register(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
+          );
+        }
+
       },
       child: Container(
         height: register_controller.email_feild ?30 : 80,
@@ -78,6 +85,8 @@ class _text_feild_emailState extends State<text_feild_email> {
                       SizedBox(width: 8,),
                       Expanded(
                           child: TextFormField(
+                            focusNode: inputNode,
+                            autofocus: true,
                             controller: register_controller.email,
                             style: TextStyle(color: colorHelper.colors[1]),
                             cursorColor: colorHelper.secondry_theme_color,

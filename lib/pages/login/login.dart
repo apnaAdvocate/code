@@ -12,6 +12,7 @@ import '../../constant/assets.dart';
 import '../../constant/color.dart';
 import '../../widgets/text_feild/text_feild_email.dart';
 import '../../widgets/text_feild/text_feild_name.dart';
+import '../Forget Password/forget password.dart';
 import '../register/register.dart';
 
 class login extends StatelessWidget {
@@ -22,7 +23,7 @@ class login extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height.toDouble(),
+          height: 1000,
           width: double.infinity,
           child: SafeArea(
             child: Column(
@@ -82,6 +83,7 @@ class login extends StatelessWidget {
                       child: Text("Please fill the input given below",style: TextStyle(fontSize: 12,color: colorHelper.colors[2]),),
                     )
                 ),
+
                 Padding(
                   padding: const EdgeInsets.only(left: 18,right: 18,top: 40),
                   child: text_feild_name_login(),
@@ -91,7 +93,7 @@ class login extends StatelessWidget {
                   child: text_feild_email_login(),
                 ),
 
-                SizedBox(height: 60,),
+                SizedBox(height: 50,),
                 InkWell(
                   onTap: ()async{
                     if(login_controller.verify_feilds() == true){
@@ -125,26 +127,42 @@ class login extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: InkWell(
-                      onTap: (){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => register()));
-                      },
-                      child: RichText(
-                        text: new TextSpan(
-                          style: new TextStyle(
-                              color: colorHelper.colors[1],
-                              fontSize: 16
-                          ),
-                          children: <TextSpan>[
-                            new TextSpan(text: 'Already have an account ?',style: GoogleFonts.poppins()),
-                            new TextSpan(text: '  ',style: GoogleFonts.poppins()),
-                            new TextSpan(text: 'REGISTER', style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: colorHelper.secondry_theme_color,decoration: TextDecoration.underline)),
-                          ],
-                        ),
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 18,left: 8),
+                      child: TextButton(onPressed: ()async{
+                        if(login_controller.verify_feilds() == true){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => loading()));
+                        }else{
+                          Get.showSnackbar(
+                            GetSnackBar(
+                              title: "Something Went Wrong",
+                              message: 'Something went wrong. Please fill the form correctly',
+                              icon: Icon(iconHelper.icons[3],color: colorHelper.colors[1],),
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
+                        }
+                      }, child: Text("Forgot your Password ?",style: TextStyle(color: colorHelper.colors[2],fontWeight: FontWeight.bold),)),
+                    )
+                ),
+                SizedBox(height: 20,),
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => register()));
+                  },
+                  child: RichText(
+                    text: new TextSpan(
+                      style: new TextStyle(
+                          color: colorHelper.colors[1],
+                          fontSize: 16
                       ),
+                      children: <TextSpan>[
+                        new TextSpan(text: 'Already have an account ?',style: GoogleFonts.poppins()),
+                        new TextSpan(text: '  ',style: GoogleFonts.poppins()),
+                        new TextSpan(text: 'REGISTER', style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: colorHelper.secondry_theme_color,decoration: TextDecoration.underline)),
+                      ],
                     ),
                   ),
                 )

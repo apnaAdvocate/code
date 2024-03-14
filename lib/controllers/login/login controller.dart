@@ -12,15 +12,16 @@ import '../../constant/color.dart';
 import '../../constant/icons.dart';
 
 class login_controller{
-  static TextEditingController name = new TextEditingController();
+  static TextEditingController password = new TextEditingController();
   static TextEditingController email = new TextEditingController();
 
-  static bool name_feild = true;
+  static bool password_feild = true;
   static bool email_feild = true;
+  static var verification_email ;
 
 
   static verify_feilds(){
-    if(name.text == ""){
+    if(password.text == ""){
 
     }else{
       if(email.text == ""){
@@ -34,7 +35,7 @@ class login_controller{
   static check_for_existing_user()async{
     EasyLoading.show(status: 'loading...');
     EasyLoading.showProgress(0.3, status: 'loading...');
-    final Uri uri = Uri.parse("${keys.base_url}/findUser?username=${name.text}&email=${email.text.trim()}");
+    final Uri uri = Uri.parse("${keys.base_url}/findUser?password=${password.text}&email=${email.text.trim()}");
 
     try {
       final response = await http.get(uri);
@@ -86,7 +87,7 @@ class login_controller{
         print(jsonResponse["code"]);
         print("${jsonResponse["user"]["email"]}");
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString("name", name.text);
+        prefs.setString("name", jsonResponse["user"]["username"]);
         prefs.setString("email", email.text);
         EasyLoading.showSuccess("User Logged In");
         EasyLoading.dismiss();
@@ -111,6 +112,79 @@ class login_controller{
     }
 
   }
+
+
+  static search_user()async{
+
+    final Uri uri = Uri.parse("${keys.base_url}/givedetails?email=${email.text.trim()}");
+
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        print('Response: $jsonResponse');
+        print(jsonResponse["code"]);
+        print("${jsonResponse["user"]["email"]}");
+
+        return jsonResponse;
+      } else {
+        // Handle errors
+
+        Get.showSnackbar(
+          GetSnackBar(
+            title: "Something Went Wrong",
+            message: 'Something went wrong. Please Try again later',
+            icon: Icon(iconHelper.icons[5],color: colorHelper.colors[1],),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+
+        print('Error: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Handle exceptions
+      print('Exception: $error');
+    }
+
+  }
+
+  static send_email_verification(name)async{
+    EasyLoading.show(status: 'loading...');
+    EasyLoading.showProgress(0.3, status: 'loading...');
+    final Uri uri = Uri.parse("${keys.base_url}/verification?email=${email.text.trim()}&name=${name}");
+
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        print('Response: $jsonResponse');
+        print(jsonResponse["otp"]);
+
+
+      } else {
+        // Handle errors
+        EasyLoading.showError("Something Went wrong");
+        Get.showSnackbar(
+          GetSnackBar(
+            title: "Something Went Wrong",
+            message: 'Something went wrong. Please Try again later',
+            icon: Icon(iconHelper.icons[3],color: colorHelper.colors[1],),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+
+        print('Error: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Handle exceptions
+      print('Exception: $error');
+    }
+
+  }
+
+
 
 
 }

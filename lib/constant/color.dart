@@ -27,7 +27,8 @@ class colorHelper{
     Color(0xFFF208E9),
     Color(0xFFD49C9C),
     Color(0xFFF20808),
-    Color(0xFFEC896A)
+    Color(0xFFEC896A),
+    Color(0xFF5b39d8)
   ];
 
   static const transparent = Colors.transparent;

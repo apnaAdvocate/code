@@ -14,23 +14,30 @@ class text_feild_password extends StatefulWidget {
 
 class _text_feild_passwordState extends State<text_feild_password> {
   @override
+  FocusNode inputNode = FocusNode();
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        setState(() {
-          register_controller.name_feild = true;
-          register_controller.email_feild = true;
-          register_controller.password_feild = !register_controller.password_feild;
-          register_controller.phone_feild = true;
-        });
-        Navigator.pushReplacement(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => register(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+      onTap: () {
+        if (register_controller.password_feild == false) {
+          FocusScope.of(context).requestFocus(inputNode);
+        } else {
+          setState(() {
+            register_controller.name_feild = true;
+            register_controller.email_feild = true;
+            register_controller.phone_feild = true;
+            register_controller.password_feild = !register_controller.password_feild;
+          });
+
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => register(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
+          );
+        }
+
       },
       child: Container(
         height: register_controller.password_feild ?30 : 80,
@@ -77,6 +84,8 @@ class _text_feild_passwordState extends State<text_feild_password> {
                       SizedBox(width: 8,),
                       Expanded(
                           child: TextFormField(
+                            focusNode: inputNode,
+                            autofocus: true,
                             controller: register_controller.password,
                             style: TextStyle(color: colorHelper.colors[1]),
                             cursorColor: colorHelper.secondry_theme_color,

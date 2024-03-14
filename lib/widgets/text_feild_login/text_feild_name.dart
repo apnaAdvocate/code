@@ -26,32 +26,36 @@ class text_feild_name_login extends StatefulWidget {
 
 class _text_feild_name_loginState extends State<text_feild_name_login> {
   @override
-
+  FocusNode inputNode = FocusNode();
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        setState(() {
-          login_controller.name_feild = !login_controller.name_feild;
-          login_controller.email_feild = true;
-        });
-        Navigator.pushReplacement(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => login(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+        if(login_controller.password_feild == false){
+          FocusScope.of(context).requestFocus(inputNode);
+        }else{
+          setState(() {
+            login_controller.password_feild = !login_controller.password_feild;
+            login_controller.email_feild = true;
+          });
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => login(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
+          );
+        }
 
       },
       child: Container(
-        height: login_controller.name_feild ?30 : 80,
+        height: login_controller.password_feild ?30 : 80,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: login_controller.name_feild ?colorHelper.transparent :colorHelper.rgb[0].withOpacity(0.80),
+          color: login_controller.password_feild ?colorHelper.transparent :colorHelper.rgb[0].withOpacity(0.80),
         ),
-        child: login_controller.name_feild
+        child: login_controller.password_feild
         ?Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -63,7 +67,7 @@ class _text_feild_name_loginState extends State<text_feild_name_login> {
                   children: [
                     Icon(iconHelper.icons[1],color: colorHelper.colors[1].withOpacity(0.60),),
                     SizedBox(width: 18,),
-                    Text("${login_controller.name.text == "" ? "Enter Your Name" : login_controller.name.text}",style: TextStyle(color: colorHelper.colors[1].withOpacity(0.60)),)
+                    Text("${login_controller.password.text == "" ? "Enter Your Password" : login_controller.password.text}",style: TextStyle(color: colorHelper.colors[1].withOpacity(0.60)),)
                   ],
                 )
               ),
@@ -89,7 +93,9 @@ class _text_feild_name_loginState extends State<text_feild_name_login> {
                     SizedBox(width: 8,),
                     Expanded(
                         child: TextFormField(
-                          controller: login_controller.name,
+                          focusNode: inputNode,
+                          autofocus: true,
+                          controller: login_controller.password,
                           style: TextStyle(color: colorHelper.colors[1]),
                           cursorColor: colorHelper.secondry_theme_color,
                           decoration: InputDecoration.collapsed(

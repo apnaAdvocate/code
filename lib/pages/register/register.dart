@@ -25,7 +25,7 @@ class register extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height.toDouble(),
+          height: 1000,
           width: double.infinity,
           child: SafeArea(
             child: Column(
@@ -116,7 +116,7 @@ class register extends StatelessWidget {
                     }else{
 
                     }
-                   
+
                   },
                   child: Container(
                     height: 60,
@@ -130,28 +130,24 @@ class register extends StatelessWidget {
                     ),
                   ),
                 ),
-      Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: InkWell(
-                onTap: (){
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => login()));
-                },
-                child: RichText(
-                  text: new TextSpan(
-                    style: new TextStyle(
-                        color: colorHelper.colors[1],
-                        fontSize: 16
-                    ),
-                    children: <TextSpan>[
-                      new TextSpan(text: 'Already have an account ?',style: GoogleFonts.poppins()),
-                      new TextSpan(text: '  ',style: GoogleFonts.poppins()),
-                      new TextSpan(text: 'LOGIN', style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: colorHelper.secondry_theme_color,decoration: TextDecoration.underline)),
-                    ],
-                  ),
-                ),
-              ),
+      SizedBox(height: 20,),
+      InkWell(
+        onTap: (){
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => login()));
+        },
+        child: RichText(
+          text: new TextSpan(
+            style: new TextStyle(
+                color: colorHelper.colors[1],
+                fontSize: 16
             ),
+            children: <TextSpan>[
+              new TextSpan(text: 'Already have an account ?',style: GoogleFonts.poppins()),
+              new TextSpan(text: '  ',style: GoogleFonts.poppins()),
+              new TextSpan(text: 'LOGIN', style: GoogleFonts.poppins(fontWeight: FontWeight.bold,color: colorHelper.secondry_theme_color,decoration: TextDecoration.underline)),
+            ],
+          ),
+        ),
       )
               ],
             ),

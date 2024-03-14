@@ -27,22 +27,27 @@ class text_feild_email_login extends StatefulWidget {
 
 class _text_feild_email_loginState extends State<text_feild_email_login> {
   @override
+  FocusNode inputNode = FocusNode();
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        setState(() {
-          login_controller.name_feild = true;
-          login_controller.email_feild = !login_controller.email_feild;
+        if(login_controller.email_feild == false){
+          FocusScope.of(context).requestFocus(inputNode);
+        }else{
+          setState(() {
+            login_controller.password_feild = true;
+            login_controller.email_feild = !login_controller.email_feild;
+          });
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => login(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
+          );
+        }
 
-        });
-        Navigator.pushReplacement(
-          context,
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => login(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
       },
       child: Container(
         height: login_controller.email_feild ?30 : 80,
@@ -89,6 +94,8 @@ class _text_feild_email_loginState extends State<text_feild_email_login> {
                       SizedBox(width: 8,),
                       Expanded(
                           child: TextFormField(
+                            focusNode: inputNode,
+                            autofocus: true,
                             controller: login_controller.email,
                             style: TextStyle(color: colorHelper.colors[1]),
                             cursorColor: colorHelper.secondry_theme_color,

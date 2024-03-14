@@ -11,4 +11,5 @@ class assets{
   static const icon = "assets/icon.png";
   static const icon2 = "assets/icon2.png";
   static const icon3 = "assets/icon3.png";
+  static const loading = "assets/searching.gif";
 }
