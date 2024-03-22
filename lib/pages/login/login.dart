@@ -2,7 +2,7 @@ import 'package:apna_advocate/constant/icons.dart';
 import 'package:apna_advocate/controllers/login/login%20controller.dart';
 import 'package:apna_advocate/pages/splash/splash.dart';
 import 'package:apna_advocate/widgets/text_feild_login/text_feild_email.dart';
-import 'package:apna_advocate/widgets/text_feild_login/text_feild_name.dart';
+import 'package:apna_advocate/widgets/text_feild_login/text_feild_password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -86,7 +86,7 @@ class login extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.only(left: 18,right: 18,top: 40),
-                  child: text_feild_name_login(),
+                  child: text_feild_password_login(),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 18,right: 18,top: 40),

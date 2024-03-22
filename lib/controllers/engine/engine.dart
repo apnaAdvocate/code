@@ -13,16 +13,15 @@ import '../../pages/Dashboard/dashboard.dart';
 import '../../pages/register/register.dart';
 
 class engine_controller {
-  static var name;
+  static var password;
 
   static var email;
 
   static collect_details() async {
-    String decodedName = Uri.decodeComponent(name.trim());
     String decodedEmail = Uri.decodeComponent(email.trim());
 
     final Uri uri = Uri.parse(
-        "${keys.base_url}/givedetails?username=$decodedName&email=$decodedEmail");
+        "${keys.base_url}/givedetails?email=$decodedEmail");
 
     try {
       final response = await http.get(uri);
@@ -56,24 +55,26 @@ class engine_controller {
 
   static check_user_existence() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    name = await prefs.getString("name");
+    password = await prefs.getString("password");
     email = await prefs.getString("email");
 
-    if (await name == null) {
+    if (await email == null) {
       return false;
     } else {
       print("SharedPrefs has value");
       final Uri uri = Uri.parse(
-          "${keys.base_url}/findUser?username=${name}&email=${email}");
+          "${keys.base_url}/findUser?password=${password}&email=${email.trim()}");
+      print(uri);
       try {
         final response = await http.get(uri);
+
         Map<String, dynamic> jsonResponse = json.decode(response.body);
         print('Response: $jsonResponse');
         print(jsonResponse["code"]);
         if (jsonResponse["code"] == "404") {
           return true;
         } else {
-          prefs.remove("name");
+          prefs.remove("password");
           prefs.remove("email");
           return false;
         }

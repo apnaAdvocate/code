@@ -75,7 +75,7 @@ class register_controller{
   static verify_user()async{
     EasyLoading.show(status: 'loading...');
     EasyLoading.showProgress(0.3, status: 'loading...');
-    final Uri uri = Uri.parse("${keys.base_url}/findUser?username=${name.text}&email=${email.text.trim()}");
+    final Uri uri = Uri.parse("${keys.base_url}/findUser?password=${password.text}&email=${email.text.trim()}");
 
     try {
       final response = await http.get(uri);
@@ -134,7 +134,7 @@ class register_controller{
           );
         }else{
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString("name", name.text);
+          prefs.setString("password", password.text);
           prefs.setString("email", email.text);
           EasyLoading.showSuccess('Account Created');
         }

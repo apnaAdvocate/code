@@ -91,112 +91,116 @@ class dashboard extends StatelessWidget {
                   )
                 ),
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        height : 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Rent Agreement")));
-                                },
-                                child: rent_agreement_card())),
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Affidevit")));
-                                },
-                                child: affidevit_card())),
-                            SizedBox(width: 10,),
-                          ],
+                  child: Container(
+                    height: 500,
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        Container(
+                          height : 100,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Rent Agreement")));
+                                  },
+                                  child: rent_agreement_card())),
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Affidevit")));
+                                  },
+                                  child: affidevit_card())),
+                              SizedBox(width: 10,),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 15,),
-                      Container(
-                        height : 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Notary Public Service Card")));
-                                },
-                                child: notary_public_services_card())),
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "E-Stamp")));
-                                },
-                                child: e_stamp_card())),
-                            SizedBox(width: 10,),
-                          ],
+                        SizedBox(height: 15,),
+                        Container(
+                          height : 100,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Notary Public Service Card")));
+                                  },
+                                  child: notary_public_services_card())),
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "E-Stamp")));
+                                  },
+                                  child: e_stamp_card())),
+                              SizedBox(width: 10,),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 15,),
-                      Container(
-                        height : 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Online Rent Payment")));
-                                },
-                                child: online_rent_payment_card())),
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Land Details")));
-                                },
-                                child: land_details_card())),
-                            SizedBox(width: 10,),
-                          ],
+                        SizedBox(height: 15,),
+                        Container(
+                          height : 100,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Online Rent Payment")));
+                                  },
+                                  child: online_rent_payment_card())),
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Land Details")));
+                                  },
+                                  child: land_details_card())),
+                              SizedBox(width: 10,),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 15,),
-                      Container(
-                        height : 100,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10,),
-                            Expanded(child: InkWell(
-                                onTap: (){
-                                  form_controller.name.text = user.name;
-                                  form_controller.phone.text = user.phone;
-                                  form_controller.email.text = user.email;
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Mutation")));
-                                },
-                                child: mutation_card())),
-                            SizedBox(width: 10,),
+                        SizedBox(height: 15,),
+                        Container(
+                          height : 100,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              SizedBox(width: 10,),
+                              Expanded(child: InkWell(
+                                  onTap: (){
+                                    form_controller.name.text = user.name;
+                                    form_controller.phone.text = user.phone;
+                                    form_controller.email.text = user.email;
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "Mutation")));
+                                  },
+                                  child: mutation_card())),
+                              SizedBox(width: 10,),
 
-                          ],
-                        ),
-                      )
-                    ],
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

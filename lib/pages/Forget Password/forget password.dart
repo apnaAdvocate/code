@@ -1,6 +1,7 @@
 import 'package:apna_advocate/constant/assets.dart';
 import 'package:apna_advocate/constant/color.dart';
 import 'package:apna_advocate/controllers/login/login%20controller.dart';
+import 'package:apna_advocate/pages/Forget%20Password/otp_page.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -10,9 +11,10 @@ class loading extends StatelessWidget {
 
   @override
 
-  load_user_send_verification(context){
-    var user = login_controller.search_user();
-    if(user["code"] == "404"){
+  load_user_send_verification(context) async{
+    var user = await login_controller.search_user();
+    if(await user["code"] == "404"){
+      print("USER : ${user}");
       CoolAlert.show(context: context,
           type: CoolAlertType.error,
           title: "User Does not Exist",
@@ -21,11 +23,9 @@ class loading extends StatelessWidget {
           }
       );
     }else{
-      var otp = login_controller.send_email_verification(user["user"]["username"]);
-      CoolAlert.show(context: context,
-          type: CoolAlertType.success,
-          title: "OTP sent to your Email",
-      );
+      var otp = await login_controller.send_email_verification(user["user"]["username"]);
+      await Navigator.of(context).push(MaterialPageRoute(builder: (context) => update_acc_verification(otp: otp["otp"], email: user["user"]["email"])));
+
     }
   }
 

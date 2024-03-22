@@ -14,6 +14,8 @@ import '../../constant/icons.dart';
 class login_controller{
   static TextEditingController password = new TextEditingController();
   static TextEditingController email = new TextEditingController();
+  static TextEditingController otp = new TextEditingController();
+
 
   static bool password_feild = true;
   static bool email_feild = true;
@@ -117,7 +119,7 @@ class login_controller{
   static search_user()async{
 
     final Uri uri = Uri.parse("${keys.base_url}/givedetails?email=${email.text.trim()}");
-
+    print(uri);
     try {
       final response = await http.get(uri);
 
@@ -150,8 +152,7 @@ class login_controller{
   }
 
   static send_email_verification(name)async{
-    EasyLoading.show(status: 'loading...');
-    EasyLoading.showProgress(0.3, status: 'loading...');
+
     final Uri uri = Uri.parse("${keys.base_url}/verification?email=${email.text.trim()}&name=${name}");
 
     try {
@@ -161,7 +162,7 @@ class login_controller{
         Map<String, dynamic> jsonResponse = json.decode(response.body);
         print('Response: $jsonResponse');
         print(jsonResponse["otp"]);
-
+        return jsonResponse;
 
       } else {
         // Handle errors
