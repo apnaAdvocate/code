@@ -54,7 +54,7 @@ Widget e_stamp_card(){
                       children: [
                         Icon(iconHelper.icons[9],color: colorHelper.colors[1],size: 16,),
                         SizedBox(width: 8,),
-                        Text("120",style: TextStyle(color: colorHelper.colors[1],fontSize: 12),)],
+                        Text("40",style: TextStyle(color: colorHelper.colors[1],fontSize: 12),)],
                     )
                   ],
                 ),

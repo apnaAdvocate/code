@@ -19,6 +19,7 @@ class iconHelper{
     AkarIcons.person,
     AkarIcons.radio_fill,
     MdiIcons.imageEdit,
-    MdiIcons.fileUpload
+    MdiIcons.fileUpload,
+    AkarIcons.arrow_down
   ];
 }

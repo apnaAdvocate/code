@@ -5,4 +5,5 @@ class user{
   static var email = "email";
   static var password = "password";
   static var notification_list = [];
+  static var order = [];
 }

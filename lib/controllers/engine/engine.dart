@@ -33,13 +33,20 @@ class engine_controller {
       String userPhone = jsonResponse["user"]["phone"];
       String userPassword = jsonResponse["user"]["password"];
       List userNotification = jsonResponse["user"]["notification"];
+      List orders = jsonResponse["user"]["orders"];
+      List<Map<String, dynamic>> orderList = [];
+      orders.forEach((orderString) {
+        Map<String, dynamic> orderMap = parseOrderString(orderString);
+        orderList.add(orderMap);
+      });
       String notification_id = jsonResponse["user"]["notification_id"];
-      // Assuming 'user' is an object where you want to store these details
       user.name = username;
       user.email = userEmail;
       user.phone = userPhone;
       user.password = userPassword;
       user.notification_list = userNotification;
+      user.order = orderList;
+      print(user.order);
       var notification_id_firebase = await print_token();
       if (notification_id == notification_id_firebase) {
       } else {
@@ -119,4 +126,19 @@ class engine_controller {
       }
     } catch (e) {}
   }
+
+  static Map<String, dynamic> parseOrderString(String? orderString) {
+    if (orderString == null) {
+      // Handle the case where orderString is null, possibly by returning an empty map or throwing an error
+      return {};
+    }
+    Map<String, dynamic> orderMap = {};
+    RegExp regExp = RegExp(r'([a-zA-Z_]+): ([\w@. -]+)');
+    regExp.allMatches(orderString).forEach((match) {
+      orderMap[match.group(1)!] = match.group(2)!; // Use the ! operator to assert that the groups are not null
+    });
+    return orderMap;
+  }
+
+
 }

@@ -1,5 +1,7 @@
+import 'package:apna_advocate/widgets/stepper/stepper.dart';
 import 'package:flutter/material.dart';
-
+import 'package:easy_stepper/easy_stepper.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import '../../constant/assets.dart';
 import '../../constant/color.dart';
 import '../../constant/icons.dart';
@@ -10,9 +12,11 @@ import '../../widgets/navigator/navigation bar.dart';
 import '../notification/notification.dart';
 
 class track_order extends StatelessWidget {
-  const track_order({Key? key}) : super(key: key);
+  track_order({Key? key}) : super(key: key);
 
   @override
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -79,11 +83,50 @@ class track_order extends StatelessWidget {
                         colors: [colorHelper.theme_color_black,colorHelper.colors[5]]
                     )
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-
-                    ],
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 450,
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                        itemCount: user.order.length,
+                        shrinkWrap: true,
+                        itemBuilder:
+                        (context,index){
+                          print("Users ORder : ${user.order[index]["service"]}");
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 180,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: colorHelper.colors[0],
+                            borderRadius: BorderRadius.all(Radius.circular(10))
+                          ),
+                          child: Column(
+                            children: [
+                              Align(
+                                  alignment : Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text("${user.order[index]["service"]}",style: TextStyle(color: colorHelper.colors[1],fontWeight: FontWeight.bold,fontSize: 18),),
+                                        SizedBox(width: 8,),
+                                        Text("order id : ${user.order[index]["order_id"]}",style: TextStyle(color: colorHelper.colors[1]),)
+                                      ],
+                                    ),
+                                  )),
+                              stepper(step: int.parse("${user.order[index]["progress"]}"),),
+                              TextButton(onPressed: ()async{
+                                const number = '8409037655'; //set the number here
+                                bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+                              }, child: Text("need help ? call us"))
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
                   ),
                 ),
               ),

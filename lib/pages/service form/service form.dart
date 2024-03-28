@@ -1,7 +1,9 @@
 import 'package:apna_advocate/constant/color.dart';
 import 'package:apna_advocate/controllers/form/form.dart';
 import 'package:apna_advocate/widgets/form/aadhar%20card.dart';
+import 'package:apna_advocate/widgets/form/dropdown.dart';
 import 'package:apna_advocate/widgets/form/pan%20card.dart';
+import 'package:apna_advocate/widgets/form/price.dart';
 import 'package:apna_advocate/widgets/form/profile%20image.dart';
 import 'package:apna_advocate/widgets/form/textfeilds.dart';
 import 'package:apna_advocate/widgets/text_feild/text_feild_email.dart';
@@ -46,42 +48,18 @@ final service ;
                 ),
               ),
               SizedBox(height: 20,),
-              profile_image(),
-              aadhar_card(),
-              pan_card(),
+              // profile_image(),
+              // aadhar_card(),
+              // pan_card(),
               text_feilds(name: "* Your Name", controller: form_controller.name),
+              text_feilds(name: "* Aadhar Number", controller: form_controller.aadhar_no),
+              stamp_dropdown(),
               text_feilds(name: "* Your Email", controller: form_controller.email),
               text_feilds(name: "* Your Phone", controller: form_controller.phone),
               text_feilds(name: "Any Additional Info", controller: form_controller.additional_info),
-              SizedBox(height: 10,),
               Padding(
-                padding: EdgeInsets.only(left: 18,right: 18,bottom: 18),
-                child: InkWell(
-                  onTap: (){
-                    var res = form_controller.validate_form();
-                    if(res == true){
-                      CoolAlert.show(
-                          context: context,
-                          type: CoolAlertType.success,
-                          text: "Service booked. Go to Track Order to track your order",
-                          confirmBtnText: "Track Order"
-                      );
-                    }else{
-
-                    }
-                  },
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: colorHelper.secondry_theme_color
-                    ),
-                    child: Center(
-                      child: Text("Book My Service"),
-                    ),
-                  ),
-                ),
+                padding: const EdgeInsets.only(left: 12,right: 12,bottom: 18),
+                child: price(service: service,),
               )
             ],
           ),
