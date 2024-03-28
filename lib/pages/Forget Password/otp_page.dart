@@ -1,4 +1,5 @@
 import 'package:apna_advocate/controllers/login/login%20controller.dart';
+import 'package:apna_advocate/pages/Forget%20Password/newPassword.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -70,31 +71,31 @@ class update_acc_verification extends StatelessWidget {
               padding: const EdgeInsets.all(18.0),
               child: InkWell(
                 onTap: () async{
-                  EasyLoading.show(status: 'loading...');
-                  EasyLoading.showProgress(0.6, status: 'loading...');
-                  try{
+                      print(otp);
+                      print(login_controller.otp.text);
+                    if(int.parse("${otp}") == int.parse("${login_controller.otp.text}")){
+                      Get.showSnackbar(
+                        GetSnackBar(
+                          title: "OTP Verified",
+                          message: 'OTP Verified',
+                          duration: const Duration(seconds: 3),
+                        ),
+                      );
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => newPassword()));
 
-                    Get.showSnackbar(
-                      GetSnackBar(
-                        title: "Verifying. Please Wait",
-                        message: 'Verifying Please Wait few moments',
-                        duration: const Duration(seconds: 3),
-                      ),
-                    );
-                    EasyLoading.showSuccess("OTP Verified");
+                    }else{
+                      Get.showSnackbar(
+                        GetSnackBar(
+                          title: "Wrong OTP",
+                          message: 'Wrong OTP. Please enter correct OTP to continue',
+                          duration: const Duration(seconds: 3),
+                        ),
 
-                    // await Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => splash()), (route) => false);
-                  }catch(e){
-                    Get.showSnackbar(
-                      GetSnackBar(
-                        title: "Wrong OTP",
-                        message: 'Wrong OTP. Please enter correct OTP to continue',
-                        duration: const Duration(seconds: 3),
-                      ),
+                      );
 
-                    );
-                    EasyLoading.showError("Wrong OTP");
-                  }
+                    }
+
+
 
 
                 },

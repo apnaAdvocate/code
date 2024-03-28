@@ -89,7 +89,7 @@ class login_controller{
         print(jsonResponse["code"]);
         print("${jsonResponse["user"]["email"]}");
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString("name", jsonResponse["user"]["username"]);
+        prefs.setString("password", jsonResponse["user"]["password"]);
         prefs.setString("email", email.text);
         EasyLoading.showSuccess("User Logged In");
         EasyLoading.dismiss();
@@ -180,6 +180,44 @@ class login_controller{
       }
     } catch (error) {
       // Handle exceptions
+      print('Exception: $error');
+    }
+
+  }
+  static change_pass()async{
+    EasyLoading.show(status: "Changing Password");
+    EasyLoading.showProgress(0.3 ,status: "Changing Password");
+    final Uri uri = Uri.parse("${keys.base_url}/updatePassword?email=${email.text.trim()}&newPassword=${password.text}");
+    print(uri);
+    EasyLoading.showProgress(0.6 ,status: "Changing Password");
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        EasyLoading.showProgress(0.8 ,status: "Changing Password");
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        print('Response: $jsonResponse');
+        print(jsonResponse["code"]);
+        print("${jsonResponse["status"]}");
+        EasyLoading.showSuccess("Password Changed");
+        return jsonResponse;
+      } else {
+        // Handle errors
+        EasyLoading.dismiss();
+        Get.showSnackbar(
+          GetSnackBar(
+            title: "Something Went Wrong",
+            message: 'Something went wrong. Please Try again later',
+            icon: Icon(iconHelper.icons[5],color: colorHelper.colors[1],),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+        EasyLoading.showError("Something went wrong");
+        print('Error: ${response.statusCode}');
+      }
+    } catch (error) {
+      // Handle exceptions
+      EasyLoading.showError("Something went wrong");
       print('Exception: $error');
     }
 

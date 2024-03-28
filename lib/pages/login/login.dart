@@ -1,5 +1,6 @@
 import 'package:apna_advocate/constant/icons.dart';
 import 'package:apna_advocate/controllers/login/login%20controller.dart';
+import 'package:apna_advocate/pages/Forget%20Password/email_form.dart';
 import 'package:apna_advocate/pages/splash/splash.dart';
 import 'package:apna_advocate/widgets/text_feild_login/text_feild_email.dart';
 import 'package:apna_advocate/widgets/text_feild_login/text_feild_password.dart';
@@ -132,18 +133,7 @@ class login extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 18,left: 8),
                       child: TextButton(onPressed: ()async{
-                        if(login_controller.verify_feilds() == true){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => loading()));
-                        }else{
-                          Get.showSnackbar(
-                            GetSnackBar(
-                              title: "Something Went Wrong",
-                              message: 'Something went wrong. Please fill the form correctly',
-                              icon: Icon(iconHelper.icons[3],color: colorHelper.colors[1],),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
-                        }
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => forget_password()));
                       }, child: Text("Forgot your Password ?",style: TextStyle(color: colorHelper.colors[2],fontWeight: FontWeight.bold),)),
                     )
                 ),
