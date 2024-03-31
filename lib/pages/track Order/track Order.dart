@@ -118,10 +118,23 @@ class track_order extends StatelessWidget {
                                     ),
                                   )),
                               stepper(step: int.parse("${user.order[index]["progress"]}"),),
-                              TextButton(onPressed: ()async{
-                                const number = '8409037655'; //set the number here
-                                bool? res = await FlutterPhoneDirectCaller.callNumber(number);
-                              }, child: Text("need help ? call us"))
+                              Row(
+                                children: [
+                                  SizedBox(width: 8,),
+                                  Icon(iconHelper.icons[12],color: colorHelper.colors[1],),
+                                  SizedBox(width: 5,),
+                                  Text("status : ${user.order[index]["status"]}",style: TextStyle(color: colorHelper.colors[1]),),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: TextButton(onPressed: ()async{
+                                        const number = '8409037655'; //set the number here
+                                        bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+                                      }, child: Text("need help ? call us")),
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
                         ),

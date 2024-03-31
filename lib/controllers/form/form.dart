@@ -116,7 +116,8 @@ class form_controller {
       "phone": phone.text,
       "additional_info": additional_info.text,
       "total_price" : "${int.parse("${form_controller.price}") + int.parse("${form_controller.stamp_price}")}",
-      "progress": "0"
+      "progress": "0",
+      "status" : "pending"
     };
    user.order.add(order);
     print(user.order);
@@ -128,6 +129,16 @@ class form_controller {
 
     Map<String, dynamic> jsonResponse = json.decode(response.body);
     print(jsonResponse);
+
+    ///// stage 2
+    final Uri uri2 = Uri.parse(
+        "${keys.base_url}/addOrder?email=${email.text.trim()}&order_id=${orderId}&name=${name.text}");
+    print(uri);
+
+    final response2 = await http.get(uri2);
+
+    Map<String, dynamic> jsonResponse2 = json.decode(response2.body);
+    print(jsonResponse2);
 
   }
 }

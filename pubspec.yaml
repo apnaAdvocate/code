@@ -55,6 +55,7 @@ dependencies:
   transparent_image: ^2.0.1
   easy_stepper: ^0.8.3
   flutter_phone_direct_caller: ^2.1.1
+  url_launcher:
 
 
 

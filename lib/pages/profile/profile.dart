@@ -2,7 +2,9 @@ import 'package:apna_advocate/constant/assets.dart';
 import 'package:apna_advocate/pages/Dashboard/dashboard.dart';
 import 'package:apna_advocate/user/user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constant/color.dart';
 import '../../constant/icons.dart';
@@ -22,7 +24,7 @@ class account extends StatelessWidget {
               alignment: Alignment.topCenter,
               child: SingleChildScrollView(
                 child: Container(
-                  height: 1500,
+                  height: 800,
                   child: Column(
                     children: [
                       SizedBox(height: 20,),
@@ -121,7 +123,14 @@ class account extends StatelessWidget {
                                 padding: const EdgeInsets.all(18.0),
                                 child: Row(
                                   children: [
-                                    TextButton(onPressed: (){}, child: Text("Terms & Conditions",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                                    TextButton(onPressed: () async{
+                                      const url = "https://www.freeprivacypolicy.com/live/3905f1ca-4f54-4cbc-8004-3ec58a0f4aec";
+                                      if (await launchUrl(Uri.parse(url))){
+                                      await launchUrl(Uri.parse(url));
+                                      } else {
+                                      // can't launch url
+                                      }
+                                    }, child: Text("Terms & Conditions",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
                                     Expanded(child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
@@ -133,7 +142,11 @@ class account extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 18,right: 18,bottom: 18),
                                 child: Row(
                                   children: [
-                                    TextButton(onPressed: (){}, child: Text("Help & Support",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                                    TextButton(onPressed: ()async{
+                                      const number = '8409037655'; //set the number here
+                                      bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+
+                                    }, child: Text("Help & Support",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
                                     Expanded(child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
@@ -145,7 +158,9 @@ class account extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 18,right: 18,bottom: 18),
                                 child: Row(
                                   children: [
-                                    TextButton(onPressed: (){}, child: Text("Share the app",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                                    TextButton(onPressed: (){
+
+                                    }, child: Text("Share the app",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
                                     Expanded(child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
@@ -190,35 +205,13 @@ class account extends StatelessWidget {
                               padding: const EdgeInsets.all(18.0),
                               child: Row(
                                 children: [
-                                  TextButton(onPressed: (){}, child: Text("Logout",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
-                                  Expanded(child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
-                                  ))
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(18.0),
-                        child: InkWell(
-                          onTap: (){
+                                  TextButton(onPressed: ()async{
+                                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                                    prefs.remove("name");
+                                    prefs.remove("email");
+                                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => splash()), (route) => false);
 
-                          },
-                          child: Container(
-                            height: 80,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(40)),
-                                color: colorHelper.colors[1]
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(18.0),
-                              child: Row(
-                                children: [
-                                  TextButton(onPressed: (){}, child: Text("Delete Account",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                                  }, child: Text("Logout",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
                                   Expanded(child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
@@ -229,6 +222,34 @@ class account extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(18.0),
+                      //   child: InkWell(
+                      //     onTap: (){
+                      //
+                      //     },
+                      //     child: Container(
+                      //       height: 80,
+                      //       width: double.infinity,
+                      //       decoration: BoxDecoration(
+                      //           borderRadius: BorderRadius.all(Radius.circular(40)),
+                      //           color: colorHelper.colors[1]
+                      //       ),
+                      //       child: Padding(
+                      //         padding: const EdgeInsets.all(18.0),
+                      //         child: Row(
+                      //           children: [
+                      //             TextButton(onPressed: (){}, child: Text("Delete Account",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                      //             Expanded(child: Align(
+                      //               alignment: Alignment.centerRight,
+                      //               child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
+                      //             ))
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
 
                     ],
                   ),
@@ -248,4 +269,6 @@ class account extends StatelessWidget {
       ),
     );
   }
+
+  
 }

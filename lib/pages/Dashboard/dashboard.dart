@@ -137,7 +137,7 @@ class dashboard extends StatelessWidget {
                                     form_controller.name.text = user.name;
                                     form_controller.phone.text = user.phone;
                                     form_controller.email.text = user.email;
-                                    form_controller.price = 80;
+                                    form_controller.price = 40;
                                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => service_form(service: "E-Stamp")));
                                   },
                                   child: e_stamp_card())),
