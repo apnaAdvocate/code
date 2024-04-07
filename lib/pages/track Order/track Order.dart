@@ -38,19 +38,19 @@ class track_order extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 18,),
-                    Container(
-                      width: 30,
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => notification()));
-                        },
-                        child: BadgeIconButton(
-                          icon: Icon(iconHelper.icons[6], color: colorHelper.colors[1]),
-                          badgeCount: user.notification_list.length, // Example number for badge count
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 18,)
+                    // Container(
+                    //   width: 30,
+                    //   child: InkWell(
+                    //     onTap: (){
+                    //       Navigator.of(context).push(MaterialPageRoute(builder: (context) => notification()));
+                    //     },
+                    //     child: BadgeIconButton(
+                    //       icon: Icon(iconHelper.icons[6], color: colorHelper.colors[1]),
+                    //       badgeCount: user.notification_list.length, // Example number for badge count
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(width: 18,)
                   ],
                 ),
               ),

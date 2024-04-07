@@ -12,4 +12,5 @@ class assets{
   static const icon2 = "assets/icon2.png";
   static const icon3 = "assets/icon3.png";
   static const loading = "assets/searching.gif";
+  static const update_app = "assets/update.png";
 }

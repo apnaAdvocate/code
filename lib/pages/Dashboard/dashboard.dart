@@ -2,11 +2,13 @@ import 'package:apna_advocate/constant/assets.dart';
 import 'package:apna_advocate/constant/color.dart';
 import 'package:apna_advocate/constant/icons.dart';
 import 'package:apna_advocate/controllers/form/form.dart';
+import 'package:apna_advocate/controllers/login/login%20controller.dart';
 import 'package:apna_advocate/pages/notification/notification.dart';
 import 'package:apna_advocate/pages/service%20form/service%20form.dart';
 import 'package:apna_advocate/pages/splash/splash.dart';
 import 'package:apna_advocate/user/user.dart';
 import 'package:apna_advocate/widgets/carousel/carousel.dart';
+import 'package:apna_advocate/widgets/form/textfeilds.dart';
 import 'package:apna_advocate/widgets/navigator/navigation%20bar.dart';
 import 'package:apna_advocate/widgets/services/affidevit.dart';
 import 'package:apna_advocate/widgets/services/estamp.dart';
@@ -15,15 +17,21 @@ import 'package:apna_advocate/widgets/services/mutation.dart';
 import 'package:apna_advocate/widgets/services/notary%20public%20services.dart';
 import 'package:apna_advocate/widgets/services/online%20rent%20payment.dart';
 import 'package:apna_advocate/widgets/services/rent agreement.dart';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../widgets/badgeIcon/badgeIcon.dart';
 
+TextEditingController new_service = new TextEditingController();
 class dashboard extends StatelessWidget {
-  const dashboard({Key? key}) : super(key: key);
+  dashboard({Key? key}) : super(key: key);
 
   @override
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -45,19 +53,19 @@ class dashboard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 18,),
-                    Container(
-                      width: 30,
-                      child: InkWell(
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => notification()));
-                        },
-                        child: BadgeIconButton(
-                          icon: Icon(iconHelper.icons[6], color: colorHelper.colors[1]),
-                          badgeCount: user.notification_list.length, // Example number for badge count
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 18,)
+                    // Container(
+                    //   width: 30,
+                    //   child: InkWell(
+                    //     onTap: (){
+                    //       Navigator.of(context).push(MaterialPageRoute(builder: (context) => notification()));
+                    //     },
+                    //     child: BadgeIconButton(
+                    //       icon: Icon(iconHelper.icons[6], color: colorHelper.colors[1]),
+                    //       badgeCount: user.notification_list.length, // Example number for badge count
+                    //     ),
+                    //   ),
+                    // ),
+
                   ],
                 ),
               ),
@@ -145,7 +153,19 @@ class dashboard extends StatelessWidget {
                             ],
                           ),
                         ),
-
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left : 8,right : 8,top : 18),
+                            child: Text("Looking for something else ?",style: TextStyle(color: colorHelper.colors[2],fontWeight: FontWeight.bold,fontSize: 24),),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        text_feilds(name: "Query", controller: new_service),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: temporary_button(),
+                        )
                       ],
                     ),
                   ),
@@ -162,6 +182,75 @@ class dashboard extends StatelessWidget {
                 child: navigation_bar(context,true,false,false)),
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+class temporary_button extends StatefulWidget {
+  const temporary_button({Key? key}) : super(key: key);
+
+  @override
+  State<temporary_button> createState() => _temporary_buttonState();
+}
+
+class _temporary_buttonState extends State<temporary_button> {
+  @override
+
+  bool pressed = false;
+
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () async{
+        if(new_service.text != ""){
+          setState(() {
+            form_controller.email.text = user.email;
+            form_controller.name.text = user.name;
+            form_controller.aadhar_no.text = "";
+            form_controller.phone.text = user.phone;
+            form_controller.stamp_price = 0;
+            form_controller.price = 0;
+          });
+          setState(() {
+            pressed = true;
+          });
+          await form_controller.place_order(new_service.text);
+          CoolAlert.show(
+              context: context,
+              type: CoolAlertType.success,
+              text: "Query sent. Our team will get in touch with you very shortly",
+              confirmBtnText: "Ok"
+          );
+          setState(() {
+            pressed = false;
+          });
+        }else{
+          Get.showSnackbar(
+            GetSnackBar(
+              title: "Something Went Wrong",
+              message: 'Something went wrong. Query not entered',
+              icon: Icon(
+                iconHelper.icons[5],
+                color: colorHelper.colors[1],
+              ),
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      },
+      child: Container(
+        height: 50,
+        width: 200,
+        decoration: BoxDecoration(
+          color: colorHelper.rgb[5],
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        child: pressed
+        ? Center(
+          child: CircularProgressIndicator(color: colorHelper.colors[0],),
+        )
+         : Center(child: Text("Submit",style: TextStyle(color: colorHelper.colors[1],letterSpacing : 0.5),)),
       ),
     );
   }

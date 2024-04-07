@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:apna_advocate/constant/keys.dart';
 import 'package:apna_advocate/main.dart';
+import 'package:apna_advocate/pages/UPDATE/update.dart';
 import 'package:apna_advocate/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -16,6 +17,20 @@ class engine_controller {
   static var password;
 
   static var email;
+
+  static check_for_update(context) async {
+    final Uri uri = Uri.parse(
+        "${keys.base_url}/version");
+    print(uri);
+    final response = await http.get(uri);
+    var jsonResponse = json.decode(response.body);
+    print(jsonResponse[0]["version"]);
+    if(jsonResponse[0]["version"] == "${keys.version}"){
+      return true;
+    }else{
+      return false ;
+    }
+  }
 
   static collect_details() async {
     String decodedEmail = Uri.decodeComponent(email.trim());
@@ -90,23 +105,29 @@ class engine_controller {
   }
 
   static navigator(context) async {
-    var value = await check_user_existence();
-    print("Value : $value");
-    if (value == true) {
-      var res = await collect_details();
-      print("Collecting Details");
-      print(res);
-      if (res != null) {
-        await Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => dashboard()),
-            (route) => false);
+    var result = await check_for_update(context);
+    if(result == true){
+      var value = await check_user_existence();
+      print("Value : $value");
+      if (value == true) {
+        var res = await collect_details();
+        print("Collecting Details");
+        print(res);
+        if (res != null) {
+          await Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => dashboard()),
+                  (route) => false);
+        }
+      } else {
+        Future.delayed(Duration(seconds: 3), () {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => register()),
+                  (route) => false);
+        });
       }
-    } else {
-      Future.delayed(Duration(seconds: 3), () {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => register()),
-            (route) => false);
-      });
+    }else{
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => update_app()), (route) => false);
+
     }
   }
 

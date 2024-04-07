@@ -105,7 +105,7 @@ class register extends StatelessWidget {
                         phoneNumber: '+91${register_controller.phone.text}',
                         verificationCompleted: (PhoneAuthCredential credential) {},
                         verificationFailed: (FirebaseAuthException e) {
-                          EasyLoading.showError("Pleasy enter another number");
+                          EasyLoading.showError("Please enter another number");
                         },
                         codeSent: (String verificationId, int? resendToken) {
                           EasyLoading.showSuccess("OTP Sent !");

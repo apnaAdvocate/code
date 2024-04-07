@@ -110,7 +110,7 @@ class account extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: Container(
-                          height: 330,
+                          height: 190,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(40)),
@@ -154,32 +154,32 @@ class account extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 18,right: 18,bottom: 18),
-                                child: Row(
-                                  children: [
-                                    TextButton(onPressed: (){
-
-                                    }, child: Text("Share the app",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
-                                    Expanded(child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
-                                    ))
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 18,right: 18,bottom: 18),
-                                child: Row(
-                                  children: [
-                                    TextButton(onPressed: (){}, child: Text("Notification Preference",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
-                                    Expanded(child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
-                                    ))
-                                  ],
-                                ),
-                              )
+                              // Padding(
+                              //   padding: const EdgeInsets.only(left: 18,right: 18,bottom: 18),
+                              //   child: Row(
+                              //     children: [
+                              //       TextButton(onPressed: (){
+                              //
+                              //       }, child: Text("Share the app",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                              //       Expanded(child: Align(
+                              //         alignment: Alignment.centerRight,
+                              //         child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
+                              //       ))
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(left: 18,right: 18,bottom: 18),
+                              //   child: Row(
+                              //     children: [
+                              //       TextButton(onPressed: (){}, child: Text("Notification Preference",style: TextStyle(color: colorHelper.colors[0],fontWeight: FontWeight.w500,fontSize: 20),)),
+                              //       Expanded(child: Align(
+                              //         alignment: Alignment.centerRight,
+                              //         child: Icon(iconHelper.icons[7],color: colorHelper.colors[0],),
+                              //       ))
+                              //     ],
+                              //   ),
+                              // )
                             ],
                           ),
                         ),
